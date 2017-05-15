@@ -1,0 +1,38 @@
+<h1>Burger Bonanza!</h1>
+<p>Manage your burgers with this app</p>
+
+<!-- listing out the burgers -->
+<div class = "col-md-6 col-sm-6">
+<ol id="burgerList">
+	{{#each burgers}}
+		<form method="POST" action="/{{this.burger_name}}?_method=PUT">
+		<li>{{this.burger_name}}</li>
+		</form>
+	{{/each}}
+</ol>
+</div>
+
+<!-- adding burgers -->
+<div class="text-center">
+	<form method="POST" action="/">
+	<input type="text" name="newBurger" id="newBurger">
+	<button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+  <h4>Enter a burger you really want to eat and then click the "Submit" button to add it to the list!</h4>
+</div>
+
+<!-- deleting burgers -->
+<div class = "col-md-6 col-sm-6">>
+<ul>
+  {{#each burgers}}
+  	<li>
+  		<p><span class="label">Burger Name:</span> {{this.burger_name}}</p>
+      <form action="/{{this.burger_name}}?_method=DELETE" method="POST">
+        <input type="hidden" name="eatBurgers">
+        <button type="submit">Eat the burger!</button>
+      </form>
+      <a href="/{{this.devoured}}">Have youe eaten it? Update this burger</a>
+  	</li>
+  {{/each}}
+</ul>
+</div>
